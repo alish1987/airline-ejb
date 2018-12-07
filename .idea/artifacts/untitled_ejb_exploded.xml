@@ -1,0 +1,12 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="untitled:ejb exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/untitled_ejb_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="airline-ejb/ejb/EJB" />
+      <element id="module-output" name="airline-ejb" />
+      <element id="javaee-facet-resources" facet="airline-ejb/web/Web" />
+      <element id="artifact" artifact-name="untitled:war exploded" />
+      <element id="jpa-descriptors" facet="airline-ejb/jpa/JPA" />
+    </root>
+  </artifact>
+</component>
