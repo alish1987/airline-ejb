@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
-<persistence-unit name="alish">
+<persistence-unit name="airline">
     <jta-data-source>jdbc/alish</jta-data-source>
     <class>com.airline.models.Passenger</class>
-    <!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
+    <class>com.airline.models.Flight</class>
+    <class>com.airline.models.Airplane</class>
+    <class>com.airline.models.Passenger</class>
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-        <!--<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>-->
-        <!--<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/alish"/>-->
-        <!--<property name="javax.persistence.jdbc.user" value="root"/>-->
-        <!--<property name="javax.persistence.jdbc.password" value="root"/>-->
+        <!--<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>-->
         <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
 
     </properties>

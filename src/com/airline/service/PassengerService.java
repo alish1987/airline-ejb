@@ -13,7 +13,7 @@ public class PassengerService {
     public PassengerService() {
     }
 
-    @PersistenceContext(unitName = "alish")
+    @PersistenceContext(unitName = "airline")
     private EntityManager entityManager;
 
     public void addPassenger(Passenger passenger) {
