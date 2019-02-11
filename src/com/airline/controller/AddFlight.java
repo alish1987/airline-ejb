@@ -1,6 +1,8 @@
 package com.airline.controller;
 
-import com.airline.models.*;
+import com.airline.models.Airplane;
+import com.airline.models.Flight;
+import com.airline.models.FlightDestinations;
 import com.airline.service.FlightService;
 
 import javax.ejb.EJB;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 @WebServlet("/AddFlight")
 public class AddFlight extends HttpServlet {
@@ -24,34 +27,51 @@ public class AddFlight extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Flight flight = new Flight();
+        String fromDestination = request.getParameter("form_destination");
+        flight.setFlightOrigins(FlightDestinations.valueOf(fromDestination));
+        String toDestination = request.getParameter("to_destination");
+        flight.setFlightDestination(FlightDestinations.valueOf(toDestination));
+        String price = request.getParameter("price");
+        if (Objects.nonNull(price))
+            flight.setPrice(Integer.valueOf(price));
+
+        Integer year = Integer.parseInt(request.getParameter("year"));
+        Integer month = Integer.parseInt(request.getParameter("month"));
+        Integer day = Integer.parseInt(request.getParameter("day"));
+        Integer hour = Integer.parseInt(request.getParameter("hour"));
+        Integer minute = Integer.parseInt(request.getParameter("minute"));
+
         flight.setFlightOrigins(FlightDestinations.Amesterdom.Los_Angles);
-        flight.setFlightDestination(FlightDestinations.Amesterdom.London);
-        flight.setProce(400);
+        flight.setPrice(400);
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2014);
-        calendar.set(Calendar.MONTH, 10);
-        calendar.set(Calendar.DAY_OF_MONTH, 4);
-        calendar.set(Calendar.HOUR_OF_DAY, 19);
-        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.YEAR, year);
+        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.DAY_OF_MONTH, day);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
+        calendar.set(Calendar.MINUTE, minute);
+
         Date flightTime = calendar.getTime();
         flight.setFlightTime(flightTime);
         System.out.println(flightTime);
 
         Airplane airplane = new Airplane();
-        airplane.setModelName("707");
-        airplane.setPlaneMake("boeing");
-        airplane.setSeatingCapacity(250);
+        String modelName = request.getParameter("model_name");
+        airplane.setModelName(modelName);
+        String planeMake = request.getParameter("airPlane_make");
+        airplane.setPlaneMake(planeMake);
+        Integer seating = Integer.parseInt(request.getParameter("seating"));
+        airplane.setSeatingCapacity(seating);
 
         flight.setAirplaneDetails(airplane);
         System.out.println(flight);
         System.out.println(airplane);
 
-        flightService.addFlight(flight,airplane);
+        flightService.addFlight(flight);
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

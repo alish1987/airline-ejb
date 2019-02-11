@@ -3,7 +3,9 @@ package com.airline.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+@NamedQuery(name = "flight.findById",query = "select f from Flight f where f.id = :id")
 @Entity
 public class Flight implements Serializable {
 
@@ -23,14 +25,17 @@ public class Flight implements Serializable {
     @Enumerated(EnumType.STRING)
     private FlightDestinations flightDestination;
 
-    private Integer proce;
+    private Integer price;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date flightTime;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     @JoinColumn(name = "airplane_fk")
     private Airplane airplaneDetails;
+
+    @OneToMany(mappedBy = "flightForPilot")
+    private List<Pilot> pilots;
 
     public Integer getId() {
         return id;
@@ -56,12 +61,12 @@ public class Flight implements Serializable {
         this.flightDestination = flightDestination;
     }
 
-    public Integer getProce() {
-        return proce;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setProce(Integer proce) {
-        this.proce = proce;
+    public void setPrice(Integer proce) {
+        this.price = proce;
     }
 
     public Date getFlightTime() {
@@ -80,14 +85,24 @@ public class Flight implements Serializable {
         this.airplaneDetails = airplaneDetails;
     }
 
+    public List<Pilot> getPilots() {
+        return pilots;
+    }
+
+    public void setPilots(List<Pilot> pilots) {
+        this.pilots = pilots;
+    }
+
     @Override
     public String toString() {
         return "Flight{" +
                 "id=" + id +
                 ", flightOrigins=" + flightOrigins +
                 ", flightDestination=" + flightDestination +
-                ", proce=" + proce +
+                ", proce=" + price +
                 ", flightTime=" + flightTime +
+                ", airplaneDetails=" + airplaneDetails +
+                ", pilots=" + pilots +
                 '}';
     }
 }
