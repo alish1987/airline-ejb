@@ -1,5 +1,6 @@
 <%@ page import="com.airline.models.Passenger" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.airline.models.Flight" %>
 <%--
   Created by IntelliJ IDEA.
   User: Alish
@@ -11,29 +12,29 @@
 <html>
 <head>
     <%--<link rel="stylesheet" href="../resources/jpaStyle.css">--%>
-<style>
-    h1 {
-        font-size: 36px;
-        color: red;
-    }
+    <style>
+        h1 {
+            font-size: 36px;
+            color: red;
+        }
 
-    table {
-        border: 5px solid rgb(104, 20, 249);
-        border-collapse: collapse;
-        font-family: Arial, sans-serif;
-    }
+        table {
+            border: 5px solid rgb(104, 20, 249);
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
 
-    th, td {
-        padding: 10px;
-        border: 2px solid rgb(28, 39, 228);
-        font-size: 18px;
-        font-weight: bold;
-    }
+        th, td {
+            padding: 10px;
+            border: 2px solid rgb(28, 39, 228);
+            font-size: 18px;
+            font-weight: bold;
+        }
 
-    th {
-        font-size: 28px;
-    }
-</style>
+        th {
+            font-size: 28px;
+        }
+    </style>
     <title>Passengers List</title>
 </head>
 <body>
@@ -65,7 +66,23 @@
         </td>
     </tr>
     <tr>
-        <td colspan="5">No Flight Tickets Yet !</td>
+        <td colspan="5">
+            <%
+                if (passengers.get(i).getFlights().size() > 0) {
+                    List<Flight> flights = passengers.get(i).getFlights();
+                    for (Integer k = 0; k < flights.size(); k++) {
+            %>
+            <%=k + 1%>  ) <%=flights.get(k).getFlightOrigins()%> to <%=flights.get(k).getFlightDestination()%> @ <%=flights.get(k).getFlightTime()%> <br/>
+
+            <%
+                    }
+                } else {
+            %>
+                No Flights ticket yet !!!
+            <%
+                }
+            %>
+        </td>
     </tr>
     <%
         }

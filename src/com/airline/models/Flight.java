@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@NamedQuery(name = "flight.findById",query = "select f from Flight f where f.id = :id")
+@NamedQuery(name = "flight.findById", query = "select f from Flight f where f.id = :id")
 @Entity
 public class Flight implements Serializable {
 
@@ -30,7 +30,11 @@ public class Flight implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date flightTime;
 
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    // پرواز می تواند چندیدن مسافر داشته باشد و مسافران هم می توانند چند بلیط پرواز داشته باشند پس رابطه چند به چند دارند .
+    @JoinTable(name = "f_p_join", joinColumns = @JoinColumn(name = "flight_fk"), inverseJoinColumns = @JoinColumn(name = "passenger_fk"))
+    private List<Passenger> passengers;
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     @JoinColumn(name = "airplane_fk")
     private Airplane airplaneDetails;
 
@@ -91,6 +95,14 @@ public class Flight implements Serializable {
 
     public void setPilots(List<Pilot> pilots) {
         this.pilots = pilots;
+    }
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
     }
 
     @Override

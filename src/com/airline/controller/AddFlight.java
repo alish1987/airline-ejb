@@ -42,8 +42,6 @@ public class AddFlight extends HttpServlet {
         Integer hour = Integer.parseInt(request.getParameter("hour"));
         Integer minute = Integer.parseInt(request.getParameter("minute"));
 
-        flight.setFlightOrigins(FlightDestinations.Amesterdom.Los_Angles);
-        flight.setPrice(400);
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
         calendar.set(Calendar.MONTH, month);
@@ -53,7 +51,6 @@ public class AddFlight extends HttpServlet {
 
         Date flightTime = calendar.getTime();
         flight.setFlightTime(flightTime);
-        System.out.println(flightTime);
 
         Airplane airplane = new Airplane();
         String modelName = request.getParameter("model_name");
@@ -64,11 +61,9 @@ public class AddFlight extends HttpServlet {
         airplane.setSeatingCapacity(seating);
 
         flight.setAirplaneDetails(airplane);
-        System.out.println(flight);
-        System.out.println(airplane);
 
         flightService.addFlight(flight);
-
+        response.sendRedirect("Flights");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

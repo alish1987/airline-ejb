@@ -1,6 +1,7 @@
 <%@ page import="com.airline.models.Flight" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.airline.models.Pilot" %>
+<%@ page import="com.airline.models.Passenger" %>
 <%--
   Created by IntelliJ IDEA.
   User: Alish
@@ -67,7 +68,7 @@
         </td>
         <td><%=flights.get(i).getPrice()%>
         </td>
-        <td><%=flights.get(i).getAirplaneDetails().getPlaneMake() + " "+flights.get(i).getAirplaneDetails().getModelName()%>
+        <td><%=flights.get(i).getAirplaneDetails().getPlaneMake() + " " + flights.get(i).getAirplaneDetails().getModelName()%>
         </td>
         <td><%=flights.get(i).getAirplaneDetails().getSeatingCapacity()%>
         </td>
@@ -88,7 +89,7 @@
             <%
                 if (flights.get(i).getPilots() != null) {
                     List<Pilot> pilots = flights.get(i).getPilots();
-                    for (Integer j=0; j < pilots.size(); j++) {
+                    for (Integer j = 0; j < pilots.size(); j++) {
 
 
             %>
@@ -102,7 +103,25 @@
         </td>
     </tr>
     <tr>
-        <td colspan="9">No Passengers On This Flight Yet !</td>
+        <td colspan="9">
+
+            <%
+                if (flights.get(i).getPassengers().size() > 0) {
+                    List<Passenger> passengerList = flights.get(i).getPassengers();
+                    for (Integer k = 0; k < passengerList.size(); k++) {
+            %>
+            <%=k + 1%> ) <%=(String) passengerList.get(k).getFirstName()%>  <%=(String) passengerList.get(k).getLastName()%> <br/>
+
+            <%
+                }//for
+            } else {
+            %>
+            No Passengers on this flight yet !!!
+            <%
+                }//else
+            %>
+
+        </td>
     </tr>
     <%
         }

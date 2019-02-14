@@ -27,22 +27,33 @@ public class AddPassenger extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Passenger passenger = new Passenger();
 
+        String firstName = request.getParameter("first_name");
+        String lastName = request.getParameter("last_name");
+
+        passenger.setFirstName(firstName);
+        passenger.setLastName(lastName);
+
+        String dob_row= request.getParameter("dob");
+
+        String[] dobArr =dob_row.split("\\/");
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, Integer.parseInt(dobArr[2]));
+        calendar.set(Calendar.MONTH, Integer.parseInt(dobArr[1])-1);
+        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dobArr[0]));
+
+        Date dob = calendar.getTime();
+        passenger.setDob(dob);
+
+        String gender = request.getParameter("gender");
+        passenger.setGender(Gender.valueOf(gender));
+
+        passengerService.addPassenger(passenger);
+        response.sendRedirect("Passengers");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Passenger passenger = new Passenger();
-        passenger.setFirstName("alish");
-        passenger.setLastName("gholian");
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 1988);
-        calendar.set(Calendar.MONTH, 5);
-        calendar.set(Calendar.DAY_OF_MONTH, 3);
-        Date dob = calendar.getTime();
-        passenger.setDob(dob);
-        passenger.setGender(Gender.FEMALE);
-        passenger.setFlightClass(FlightClass.BUSINESS);
-        System.out.println(passenger);
-        passengerService.addPassenger(passenger);
+
     }
 }

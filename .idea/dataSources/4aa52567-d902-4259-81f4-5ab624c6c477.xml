@@ -907,129 +907,211 @@
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
     <table id="228" parent="2" name="airplane"/>
-    <table id="229" parent="2" name="flight"/>
-    <table id="230" parent="2" name="passenger"/>
-    <table id="231" parent="2" name="sequence"/>
-    <column id="232" parent="228" name="ID">
+    <table id="229" parent="2" name="f_p_join"/>
+    <table id="230" parent="2" name="flight"/>
+    <table id="231" parent="2" name="passenger"/>
+    <table id="232" parent="2" name="pilot"/>
+    <table id="233" parent="2" name="sequence"/>
+    <column id="234" parent="228" name="ID">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="233" parent="228" name="MODELNAME">
+    <column id="235" parent="228" name="MODELNAME">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="234" parent="228" name="PLANEMAKE">
+    <column id="236" parent="228" name="PLANEMAKE">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="235" parent="228" name="SEATINGCAPACITY">
+    <column id="237" parent="228" name="SEATINGCAPACITY">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="236" parent="228" name="PRIMARY">
+    <key id="238" parent="228" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="237" parent="229" name="ID">
+    <column id="239" parent="229" name="passenger_fk">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="238" parent="229" name="FLIGHTDESTINATION">
+    <column id="240" parent="229" name="flight_fk">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="241" parent="229" name="FK_f_p_join_flight_fk">
+      <ColNames>flight_fk</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="242" parent="229" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>passenger_fk
+flight_fk</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="243" parent="229" name="FK_f_p_join_passenger_fk">
+      <ColNames>passenger_fk</ColNames>
+      <RefSchemaName>alish</RefSchemaName>
+      <RefTableName>passenger</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="244" parent="229" name="FK_f_p_join_flight_fk">
+      <ColNames>flight_fk</ColNames>
+      <RefSchemaName>alish</RefSchemaName>
+      <RefTableName>flight</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="245" parent="230" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="246" parent="230" name="FLIGHTDESTINATION">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="239" parent="229" name="FLIGHTORIGINS">
+    <column id="247" parent="230" name="FLIGHTORIGINS">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="240" parent="229" name="FLIGHTTIME">
+    <column id="248" parent="230" name="FLIGHTTIME">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="229" name="PROCE">
+    <column id="249" parent="230" name="PRICE">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="242" parent="229" name="airplane_fk">
+    <column id="250" parent="230" name="airplane_fk">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="243" parent="229" name="FK_FLIGHT_airplane_fk">
+    <index id="251" parent="230" name="FK_FLIGHT_airplane_fk">
       <ColNames>airplane_fk</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="244" parent="229" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <foreign-key id="245" parent="229" name="FK_FLIGHT_airplane_fk">
-      <ColNames>airplane_fk</ColNames>
-      <RefSchemaName>alish</RefSchemaName>
-      <RefTableName>airplane</RefTableName>
-      <RefColNames>ID</RefColNames>
-    </foreign-key>
-    <column id="246" parent="230" name="ID">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="247" parent="230" name="DOB">
-      <Position>2</Position>
-      <DataType>date|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="248" parent="230" name="FIRSTNAME">
-      <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="249" parent="230" name="FLIGHTCLASS">
-      <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="250" parent="230" name="GENDER">
-      <Position>5</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="251" parent="230" name="LASTNAME">
-      <Position>6</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
     <key id="252" parent="230" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="253" parent="231" name="SEQ_NAME">
+    <foreign-key id="253" parent="230" name="FK_FLIGHT_airplane_fk">
+      <ColNames>airplane_fk</ColNames>
+      <RefSchemaName>alish</RefSchemaName>
+      <RefTableName>airplane</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="254" parent="231" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="255" parent="231" name="DOB">
+      <Position>2</Position>
+      <DataType>date|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="256" parent="231" name="FIRSTNAME">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="257" parent="231" name="FLIGHTCLASS">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="258" parent="231" name="GENDER">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="259" parent="231" name="LASTNAME">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="260" parent="231" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="261" parent="232" name="ID">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="262" parent="232" name="FIRSTNAME">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="263" parent="232" name="LASTNAME">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="264" parent="232" name="PILOTLICENSE">
+      <Position>4</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="265" parent="232" name="PILOTRANK">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="266" parent="232" name="flight_fk">
+      <Position>6</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="267" parent="232" name="FK_PILOT_flight_fk">
+      <ColNames>flight_fk</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="268" parent="232" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="269" parent="232" name="FK_PILOT_flight_fk">
+      <ColNames>flight_fk</ColNames>
+      <RefSchemaName>alish</RefSchemaName>
+      <RefTableName>flight</RefTableName>
+      <RefColNames>ID</RefColNames>
+    </foreign-key>
+    <column id="270" parent="233" name="SEQ_NAME">
       <Position>1</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="231" name="SEQ_COUNT">
+    <column id="271" parent="233" name="SEQ_COUNT">
       <Position>2</Position>
       <DataType>decimal(38)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="255" parent="231" name="PRIMARY">
+    <key id="272" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>SEQ_NAME</ColNames>
       <Primary>1</Primary>

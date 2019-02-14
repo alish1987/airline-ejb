@@ -3,6 +3,7 @@ package com.airline.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Passenger implements Serializable {
@@ -19,6 +20,11 @@ public class Passenger implements Serializable {
     private Gender gender;
     @Enumerated(EnumType.STRING)
     private FlightClass flightClass;
+
+    @ManyToMany(mappedBy = "passengers")
+    private List<Flight> flights;
+
+
     public Integer getId() {
         return id;
     }
@@ -65,5 +71,13 @@ public class Passenger implements Serializable {
 
     public void setFlightClass(FlightClass flightClass) {
         this.flightClass = flightClass;
+    }
+
+    public List<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(List<Flight> flights) {
+        this.flights = flights;
     }
 }

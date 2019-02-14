@@ -1,11 +1,11 @@
 package com.airline.models;
 
 public enum FlightDestinations {
-    San_Fransisco,
-    Los_Angles,
+    San_Francisco,
+    Los_Angeles,
     New_York,
     London,
     Paris,
-    Rom,
+    Rome,
     Amesterdom
 }

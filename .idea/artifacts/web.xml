@@ -1,17 +1,18 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="untitled:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/untitled_war_exploded</output-path>
+  <artifact type="exploded-war" name="web">
+    <output-path>$PROJECT_DIR$/out/artifacts/web</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="airline-ejb/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="airline-ejb" />
+          <element id="jpa-descriptors" facet="airline-ejb/jpa/JPA" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Java EE 6-Java EE 6" />
           <element id="library" level="project" name="JPA 2.0-2.0" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="airline-ejb/web/Web" />
     </root>
   </artifact>
 </component>

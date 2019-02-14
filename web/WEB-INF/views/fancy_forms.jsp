@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<br>
+<br>airPlane_make
 <head>
     <style>
         body {
@@ -20,7 +20,7 @@
 <hr>
 Add Flight And Airplane
 </br>
-<form method="post" action="/AddFlight">
+<form method="post" action="/web/AddFlight">
     <select id="form_destination" name="form_destination">
         <option value="San_Francisco">San Francisco</option>
         <option value="Los_Angeles">Los Angeles</option>
@@ -95,7 +95,7 @@ Add Flight And Airplane
     </hr>
 </form>
 <h1>Add Pilot to Flight</h1>
-<form method="post" action="">
+<form method="post" action="/web/CreatePilotAndAddToFlight">
     First Name :
     <input name="first_name" type="text"/>
     </br></br>
@@ -119,7 +119,7 @@ Add Flight And Airplane
     </hr>
 </form>
 <h1>Add Passenger</h1>
-<form method="post" action="">
+<form method="post" action="/web/AddPassenger">
     First Name :
     <input name="first_name" type="text"/>
     </br></br>
@@ -131,19 +131,19 @@ Add Flight And Airplane
     </br></br>
     Gender :
     <select name="gender">
-        <option value="Female">Female</option>
-        <option value="Male">Male</option>
+        <option value="FEMALE">Female</option>
+        <option value="MALE">Male</option>
     </select>
     </hr>
     <button type="submit">Add Passenger</button>
     </hr>
 </form>
 <h1>Add Passenger to Flight</h1>
-<form method="post" action="">
+<form method="post" action="/web/AddPassengerToFlight">
     Add Passenger With an Id of
-    <input name="pid" type="text"/>
+    <input name="pId" type="text"/>
     to a Flight With an Id of
-    <input name="fid" type="text"/>
+    <input name="fId" type="text"/>
     </hr>
 
     <button type="submit">Add Passenger to Flight</button>
@@ -151,11 +151,11 @@ Add Flight And Airplane
 </form>
 <h1>Add Flight to Passenger <span style="font-size: 16px;vertical-align: middle;">(Give a Passenger Another Flight Ticket to his\her Collection of flight tickets)</span>
 </h1>
-<form method="post" action="">
+<form method="post" action="/web/AddFlightTicketToPassenger">
     Add a ticket for a flight with an Id of
-    <input name="fid" type="text"/>
+    <input name="fId" type="text"/>
     to a Passenger With an Id of
-    <input name="pid" type="text"/>
+    <input name="pId" type="text"/>
     </br></br>
     <span style="font-weight:bold;">(In Real Word Terms - Add the Flight Ticket to Passenger's Collection of Flight Tickets)</span>
     </hr>
