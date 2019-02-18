@@ -7,6 +7,7 @@ import com.airline.models.Pilot;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -72,5 +73,18 @@ public class FlightService {
         TypedQuery<Flight> flightTypedQuery = entityManager.createQuery("select f from Flight f ", Flight.class);
         List<Flight> flights = flightTypedQuery.getResultList();
         return flights;
+    }
+
+    public Flight getFlight(Integer flightId) {
+        TypedQuery<Flight> query = entityManager.createNamedQuery("flight.findById", Flight.class);
+        query.setParameter("id", Integer.valueOf(flightId));
+        Flight flight = new Flight();
+        try {
+            flight = query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+
+        return flight;
     }
 }

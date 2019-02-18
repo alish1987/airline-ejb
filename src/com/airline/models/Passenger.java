@@ -1,11 +1,13 @@
 package com.airline.models;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@XmlRootElement
 public class Passenger implements Serializable {
 
     private static final long serialVersionUID = 5158286219490053747L;
